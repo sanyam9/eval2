@@ -9,11 +9,11 @@ const postSaveController = async (req,res) => {
     let qId = companies[i].id;
     const getRes = await axios.get(`http://54.167.46.10/company/${qId}`);
     companies[i] = {...getRes.data, 'sector':companies[i].sector};
+    delete companies[i].tags;
+    delete companies[i].description;
   }
   
-  let stat = await companyServices.createCompanies(companies);
-  console.log(stat);
-
+  await companyServices.createCompanies(companies);
   res.status(200).json(urlLink);
 };
 
