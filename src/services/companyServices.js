@@ -1,8 +1,8 @@
-const {getCSVData} = require('../utils/csvUtils');
+const csvUtils = require('../utils/csvUtils');
 const db = require('../../db/models');
 
 async function getIdSector(urlLink){
-  let parsedCSVData = await getCSVData(urlLink);
+  let parsedCSVData = await csvUtils.getCSVData(urlLink);
   parsedCSVData = parsedCSVData.map(item => { 
     return {
       id: item[0],
