@@ -12,22 +12,28 @@ async function getIdSector(urlLink){
   return parsedCSVData;
 }
 
-async function createCompanies(companyList){
-  console.log(companyList);
+function createCompanies(companyList){
   return db.CompanyInfo.bulkCreate(companyList);
 }
 
+function insertScore(companyId, companyScore){
+  return db.CompanyInfo.update(
+    {score: companyScore},
+    {
+      where: {id: companyId}
+    }
+  );
+}
 
-// function getAllCompanyIds(){
-//   return db.companySectors.findAll({
-//     attribute: ['companyId']
-//   }).then(function(ids){
-//     return ids;
-//   });
-// }
-
+function getOutput(){
+  return db.CompanyInfo.findAll({
+    attributes: ['id', 'name', 'score']
+  });
+}
 module.exports = {
   getIdSector,
-  createCompanies
+  createCompanies,
+  insertScore,
+  getOutput
 };
 
