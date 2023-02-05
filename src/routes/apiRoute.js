@@ -8,4 +8,7 @@ router.route('/save')
 router.route('/companies')
   .get(companyController.getCompaniesBySector);
 
+router.route('/company/:id')
+  .patch(companyController.patchCompanyDetails);
+
 module.exports = router;

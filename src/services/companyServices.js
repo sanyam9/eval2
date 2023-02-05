@@ -41,11 +41,22 @@ function getTopCompanies(sector){
     }
   });
 }
+
+function updateCompany(idToUpdate, companyDetails){
+  return db.CompanyInfo.update(companyDetails,{
+    where: {
+      id: idToUpdate
+    },
+    returning: true
+  });
+}
+
 module.exports = {
   getIdSector,
   createCompanies,
   insertScore,
   getOutput,
-  getTopCompanies
+  getTopCompanies,
+  updateCompany
 };
 
